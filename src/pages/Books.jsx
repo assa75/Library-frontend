@@ -3,32 +3,37 @@ import { getBooks, addBook } from "../services/api";
 import "./Books.css";
 
 export default function Books() {
-  const [books, setBooks] = useState([]);
-  const [bookName, setBookName] = useState("");
-  const [count, setCount] = useState("");
-  const [msg, setMsg] = useState("");
-  const [search, setSearch] = useState(""); 
 
-  useEffect(() => {
+  const [books,setBooks] = useState([]);
+  const [bookName,setBookName] = useState("");
+  const [count,setCount] = useState("");
+  const [msg,setMsg] = useState("");
+  const [search,setSearch] = useState("");
+
+  const [page,setPage] = useState(1);
+  const perPage = 10;
+
+  useEffect(()=>{
     loadBooks();
-  }, []);
+  },[]);
 
-  const loadBooks = async () => {
-    try {
+  const loadBooks = async ()=>{
+    try{
       const res = await getBooks();
       setBooks(res.data);
-    } catch (err) {
-      console.error("Error loading books", err);
+    }catch(err){
+      console.error("Error loading books",err);
     }
   };
 
-  const handleAdd = async () => {
-    if (!bookName || !count) {
+  const handleAdd = async ()=>{
+
+    if(!bookName || !count){
       setMsg("Please enter book name and count");
       return;
     }
 
-    await addBook(bookName, count);
+    await addBook(bookName,count);
 
     setMsg("Books added successfully");
     setBookName("");
@@ -42,40 +47,55 @@ export default function Books() {
     String(b.accessNo).includes(search)
   );
 
+  const totalPages = Math.ceil(filteredBooks.length/perPage);
+  const start = (page-1)*perPage;
+
+  const paginatedBooks =
+  filteredBooks.slice(start,start+perPage);
+
   return (
+
     <div className="books">
+
       <h2>Books</h2>
 
       <div className="book-form">
+
         <input
-          type="text"
-          placeholder="Book Title"
-          value={bookName}
-          onChange={(e) => setBookName(e.target.value)}
+        type="text"
+        placeholder="Book Title"
+        value={bookName}
+        onChange={e=>setBookName(e.target.value)}
         />
 
         <input
-          type="number"
-          placeholder="Count"
-          value={count}
-          onChange={(e) => setCount(e.target.value)}
+        type="number"
+        placeholder="Count"
+        value={count}
+        onChange={e=>setCount(e.target.value)}
         />
 
-        <button onClick={handleAdd}>Add Books</button>
+        <button onClick={handleAdd}>
+        Add Books
+        </button>
+
       </div>
 
       {msg && <p className="msg">{msg}</p>}
 
       <div className="book-search">
+
         <input
-          type="text"
-          placeholder="Search by book name or access no..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+        type="text"
+        placeholder="Search by book name or access no..."
+        value={search}
+        onChange={e=>setSearch(e.target.value)}
         />
+
       </div>
 
       <table className="table-wrapper">
+
         <thead>
           <tr>
             <th>Access No</th>
@@ -85,21 +105,51 @@ export default function Books() {
         </thead>
 
         <tbody>
-          {filteredBooks.length === 0 ? (
+
+          {paginatedBooks.length===0 ? (
+
             <tr>
               <td colSpan="3">No books found</td>
             </tr>
+
           ) : (
-            filteredBooks.map((b) => (
+
+            paginatedBooks.map(b=>(
               <tr key={b.accessNo}>
                 <td>{b.accessNo}</td>
                 <td>{b.bookName}</td>
                 <td className={b.status}>{b.status}</td>
               </tr>
             ))
+
           )}
+
         </tbody>
+
       </table>
+
+      <div className="pagination">
+
+        <button
+        disabled={page===1}
+        onClick={()=>setPage(page-1)}
+        >
+        Prev
+        </button>
+
+        <span>
+        Page {page} / {totalPages || 1}
+        </span>
+
+        <button
+        disabled={page===totalPages}
+        onClick={()=>setPage(page+1)}
+        >
+        Next
+        </button>
+
+      </div>
+
     </div>
   );
 }

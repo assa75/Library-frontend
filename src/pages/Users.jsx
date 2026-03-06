@@ -1,45 +1,49 @@
-import { useEffect, useState } from "react";
-import { getUsers, addUser } from "../services/api";
+import { useEffect,useState } from "react";
+import { getUsers,addUser } from "../services/api";
 import "./Users.css";
 
-const ROLES = ["STUDENT", "FACULTY"];
+const ROLES = ["STUDENT","FACULTY"];
 
-export default function Users() {
+export default function Users(){
 
-  const [users, setUsers] = useState([]);
-  const [saving, setSaving] = useState(false);
-  const [roleSearch, setRoleSearch] = useState("");
-  const [showRoles, setShowRoles] = useState(false);
+  const [users,setUsers] = useState([]);
+  const [saving,setSaving] = useState(false);
+  const [roleSearch,setRoleSearch] = useState("");
+  const [showRoles,setShowRoles] = useState(false);
 
-  const [form, setForm] = useState({
-    name: "",
-    role: "STUDENT",
-    rollNo: "",
-    facultyId: ""
+  const [page,setPage] = useState(1);
+  const perPage = 5;
+
+  const [form,setForm] = useState({
+    name:"",
+    role:"STUDENT",
+    rollNo:"",
+    facultyId:""
   });
 
-  useEffect(() => {
+  useEffect(()=>{
     loadUsers();
-  }, []);
+  },[]);
 
-  const loadUsers = () => {
-    getUsers().then(res => setUsers(res.data));
+  const loadUsers=()=>{
+    getUsers().then(res=>setUsers(res.data));
   };
 
-  const save = () => {
-    if (saving) return;
+  const save=()=>{
 
-    if (!form.name || !form.role) {
+    if(saving) return;
+
+    if(!form.name || !form.role){
       alert("Fill required fields");
       return;
     }
 
-    if (form.role === "STUDENT" && !form.rollNo) {
+    if(form.role==="STUDENT" && !form.rollNo){
       alert("Student rollNo required");
       return;
     }
 
-    if (form.role === "FACULTY" && !form.facultyId) {
+    if(form.role==="FACULTY" && !form.facultyId){
       alert("Faculty ID required");
       return;
     }
@@ -47,87 +51,103 @@ export default function Users() {
     setSaving(true);
 
     addUser({
-      name: form.name,
-      role: form.role,
-      rollNo: form.role === "STUDENT" ? form.rollNo : null,
-      facultyId: form.role === "FACULTY" ? form.facultyId : null
+      name:form.name,
+      role:form.role,
+      rollNo:form.role==="STUDENT"?form.rollNo:null,
+      facultyId:form.role==="FACULTY"?form.facultyId:null
     })
-      .then(() => {
-        alert("User added");
-        setForm({
-          name: "",
-          role: "STUDENT",
-          rollNo: "",
-          facultyId: ""
-        });
-        setRoleSearch("");
-        loadUsers();
-      })
-      .finally(() => setSaving(false));
+    .then(()=>{
+      alert("User added");
+
+      setForm({
+        name:"",
+        role:"STUDENT",
+        rollNo:"",
+        facultyId:""
+      });
+
+      setRoleSearch("");
+      loadUsers();
+    })
+    .finally(()=>setSaving(false));
   };
 
   const filteredRoles = ROLES.filter(r =>
-    r.toLowerCase().includes(roleSearch.toLowerCase())
+  r.toLowerCase().includes(roleSearch.toLowerCase())
   );
 
-  return (
+  const totalPages = Math.ceil(users.length/perPage);
+  const start = (page-1)*perPage;
+
+  const paginatedUsers =
+  users.slice(start,start+perPage);
+
+  return(
+
     <div className="box">
+
       <h3>Add User</h3>
 
-      {/* NAME */}
       <input
-        placeholder="Name"
-        value={form.name}
-        onChange={e => setForm({ ...form, name: e.target.value })}
+      placeholder="Name"
+      value={form.name}
+      onChange={e=>setForm({...form,name:e.target.value})}
       />
 
-      {/* ROLE SEARCHABLE DROPDOWN */}
       <div className="dropdown">
+
         <input
-          placeholder="Search role..."
-          value={roleSearch}
-          onFocus={() => setShowRoles(true)}
-          onChange={e => {
-            setRoleSearch(e.target.value);
-            setShowRoles(true);
-          }}
+        placeholder="Search role..."
+        value={roleSearch}
+        onFocus={()=>setShowRoles(true)}
+        onChange={e=>{
+          setRoleSearch(e.target.value);
+          setShowRoles(true);
+        }}
         />
 
         {showRoles && (
+
           <div className="dropdown-list">
-            {filteredRoles.map(r => (
+
+            {filteredRoles.map(r=>(
               <div
-                key={r}
-                className="dropdown-item"
-                onClick={() => {
-                  setForm({ ...form, role: r });
-                  setRoleSearch(r);
-                  setShowRoles(false);
-                }}
+              key={r}
+              className="dropdown-item"
+              onClick={()=>{
+                setForm({...form,role:r});
+                setRoleSearch(r);
+                setShowRoles(false);
+              }}
               >
-                {r}
+              {r}
               </div>
             ))}
+
           </div>
+
         )}
+
       </div>
 
-      {/* STUDENT FIELDS */}
-      {form.role === "STUDENT" && (
+      {form.role==="STUDENT" && (
+
         <input
-          placeholder="Roll No"
-          value={form.rollNo}
-          onChange={e => setForm({ ...form, rollNo: e.target.value })}
+        placeholder="Roll No"
+        value={form.rollNo}
+        onChange={e=>setForm({...form,rollNo:e.target.value})}
         />
+
       )}
 
-      {/* FACULTY FIELDS */}
-      {form.role === "FACULTY" && (
+      {form.role==="FACULTY" && (
+
         <input
-          placeholder="Faculty ID"
-          value={form.facultyId}
-          onChange={e => setForm({ ...form, facultyId: e.target.value })}
+        placeholder="Faculty ID"
+        value={form.facultyId}
+        onChange={e=>setForm({...form,facultyId:e.target.value})}
         />
+
       )}
 
       <button onClick={save} disabled={saving}>
@@ -137,7 +157,9 @@ export default function Users() {
       <h3>Users List</h3>
 
       <div className="users-list">
-        {users.map(u => (
+
+        {paginatedUsers.map(u=>(
+
           <div key={u.userId} className="user-row">
 
             <div className="user-info">
@@ -152,7 +174,31 @@ export default function Users() {
             </span>
 
           </div>
+
         ))}
+
+      </div>
+
+      <div className="pagination">
+
+        <button
+        disabled={page===1}
+        onClick={()=>setPage(page-1)}
+        >
+        Prev
+        </button>
+
+        <span>
+        Page {page} / {totalPages || 1}
+        </span>
+
+        <button
+        disabled={page===totalPages}
+        onClick={()=>setPage(page+1)}
+        >
+        Next
+        </button>
+
       </div>
 
     </div>

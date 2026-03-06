@@ -9,6 +9,8 @@ export default function Signup({ setAuthPage }) {
     password:""
   });
 
+  const[show,setShow] = useState(false);
+
   const handleChange = (e)=>{
     setForm({...form,[e.target.name]:e.target.value});
   };
@@ -53,7 +55,7 @@ export default function Signup({ setAuthPage }) {
 
           <input
             name="password"
-            type="password"
+            type={show?'text':'password'}
             placeholder="Password"
             onChange={handleChange}
             required

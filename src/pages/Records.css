@@ -154,6 +154,33 @@
   overflow-x: auto;
 }
 
+.pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+margin-top:20px;
+}
+
+.pagination button{
+background:#2563eb;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+}
+
+.pagination button:disabled{
+background:#94a3b8;
+cursor:not-allowed;
+}
+
+.pagination span{
+font-weight:600;
+}
+
 
 @media (max-width: 768px) {
 
