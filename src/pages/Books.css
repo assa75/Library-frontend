@@ -1,0 +1,110 @@
+.books {
+  padding:20px;
+}
+
+.book-form {
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.book-form input {
+  padding:8px;
+}
+
+.book-form button {
+  background:#4CAF50;
+  color:white;
+  border:none;
+  padding:8px 16px;
+  cursor:pointer;
+}
+
+.message {
+  margin:10px 0;
+  font-weight:600;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td {
+  border:1px solid #ddd;
+  padding:8px;
+}
+
+.AVAILABLE {
+  color:green;
+  font-weight:bold;
+}
+
+.ISSUED {
+  color:red;
+  font-weight:bold;
+}
+.book-search {
+  margin: 10px 0 15px 0;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.book-search input {
+  width: 260px;              
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.book-search input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+
+  .books {
+    padding: 10px;
+  }
+
+  /* stack form inputs */
+  .book-form {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .book-form input,
+  .book-form button {
+    width: 100%;
+  }
+
+  /* search full width */
+  .book-search {
+    justify-content: center;
+  }
+
+  .book-search input {
+    width: 100%;
+  }
+
+  /* table scroll */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th, td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+}

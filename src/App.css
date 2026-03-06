@@ -1,0 +1,55 @@
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f6f9;
+}
+
+.main > *:not(.header) {
+  padding: 10px;
+}
+
+/* @media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+} */
+.app{
+  display:flex;
+}
+
+@media(max-width:768px){
+
+  .app{
+    flex-direction:column;
+  }
+
+}
+
+.layout{
+  display:flex;
+}
+
+.main{
+  flex:1;
+  padding:20px;
+}
+
+@media(max-width:768px){
+
+  .layout{
+    flex-direction:column;
+  }
+
+}

@@ -1,0 +1,65 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+   /* font-family: "Changa", sans-serif; */
+  /* background-color: #f4f6f9; */
+  color: #1f2937;
+}
+
+button, input, select {
+  outline: none;
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+:root {
+  /* LIGHT MODE */
+  --card-bg: linear-gradient(135deg,#ffffff,#f8f9ff);
+  --card-inner-bg: #f4f6ff;
+  --card-inner-hover: #ecefff;
+
+  --text-main: #3b3f5c;
+  --text-sub: #444;
+
+  --input-bg: #fafbff;
+  --input-bg-focus: #ffffff;
+  --border-color: #ddd;
+
+  --btn-gradient: linear-gradient(135deg,#6c63ff,#8f88ff);
+  --btn-shadow: rgba(108,99,255,0.35);
+
+  --shadow-soft: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+body.dark {
+  /* DARK MODE */
+  --card-bg: linear-gradient(135deg,#0f172a,#020617);
+  --card-inner-bg: #020617;
+  --card-inner-hover: #020617;
+
+  --text-main: #e5e7eb;
+  --text-sub: #cbd5f5;
+
+  --input-bg: #020617;
+  --input-bg-focus: #020617;
+  --border-color: #334155;
+
+  --btn-gradient: linear-gradient(135deg,#6366f1,#38bdf8);
+  --btn-shadow: rgba(56,189,248,0.45);
+
+  --shadow-soft: 0 12px 35px rgba(0,0,0,0.7);
+}

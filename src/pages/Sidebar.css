@@ -1,0 +1,129 @@
+.sidebar {
+  width: 230px;
+  background: #0f172a;
+  color: white;
+  min-height: 100vh;
+  padding: 24px 18px;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.library-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.library-title .emoji {
+  font-size: 35px;
+}
+
+.library-title .text {
+  background: linear-gradient(135deg, #FF7518, #FDEE00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 14px 0;
+  border: none;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sidebar button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: 0;
+}
+
+.sidebar button span,
+.sidebar button {
+  z-index: 1;
+}
+
+.sidebar button:hover::before {
+  transform: scaleX(1);
+}
+
+.sidebar button:hover {
+  transform: translateX(6px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(245, 87, 108, 0.35);
+}
+
+.sidebar:hover{
+  background: rgb(56, 53, 14);
+}
+
+.sidebar button.active::before {
+  transform: scaleX(1);
+}
+
+.sidebar button.active {
+  transform: translateX(6px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(245, 87, 108, 0.35);
+}
+
+/* ===== MOBILE HEADER ===== */
+
+.mobile-header{
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 16px;
+  background:#0f172a;
+  color:white;
+}
+
+.hamburger{
+  font-size:24px;
+  background:none;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+@media (max-width:768px){
+
+  .sidebar{
+    position:fixed;
+    left:-240px;
+    top:60px;
+    width:220px;
+    height:100%;
+    transition:0.3s;
+    z-index:1000;
+  }
+
+  .sidebar.show{
+    left:0;
+  }
+
+  .mobile-header{
+    display:flex;
+  }
+
+}
