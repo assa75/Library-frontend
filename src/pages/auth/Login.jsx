@@ -63,7 +63,7 @@ export default function Login({ setIsAuth, setAuthPage }) {
         </form>
 
         <p onClick={()=>setAuthPage("signup")}>
-          Create new account
+          Create new account? Singup
         </p>
 
       </div>
