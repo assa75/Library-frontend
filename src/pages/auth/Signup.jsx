@@ -53,13 +53,23 @@ export default function Signup({ setAuthPage }) {
             required
           />
 
+          <div className="password-box">
+
           <input
-            name="password"
-            type={show?'text':'password'}
-            placeholder="Password"
-            onChange={handleChange}
-            required
+          type={show ? "text" : "password"}
+          placeholder="Password"
+          onChange={(e)=>setPassword(e.target.value)}
+          required
           />
+
+          <span
+          className="toggle"
+          onClick={()=>setShow(!show)}
+          >
+          {show ? "👁️" : "🙈"}
+          </span>
+
+          </div>
 
           <button type="submit">
             Signup

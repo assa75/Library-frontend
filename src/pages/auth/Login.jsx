@@ -5,7 +5,8 @@ export default function Login({ setIsAuth, setAuthPage }) {
 
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
-  const [show, setShow] = useState(false);
+  const [show,setShow] = useState(false);
+
 
   const handleLogin = (e)=>{
     e.preventDefault();
@@ -50,12 +51,23 @@ export default function Login({ setIsAuth, setAuthPage }) {
             required
           />
 
+         <div className="password-box">
+
           <input
-            type = {show?'text':'password'}
-            placeholder="Password"
-            onChange={(e)=>setPassword(e.target.value)}
-            required
+          type={show ? "text" : "password"}
+          placeholder="Password"
+          onChange={(e)=>setPassword(e.target.value)}
+          required
           />
+
+          <span
+          className="toggle"
+          onClick={()=>setShow(!show)}
+          >
+          {show ? "👁️" : "🙈"}
+          </span>
+
+          </div>
 
           <button type="submit">
             Login

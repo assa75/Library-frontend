@@ -137,8 +137,6 @@
 }
 
 
-/* ===== BACKGROUND ANIMATION ===== */
-
 @keyframes gradientMove{
   0%{
     background-position:0% 50%;
@@ -161,4 +159,22 @@
     padding:28px;
   }
 
+}
+
+.password-box{
+position:relative;
+}
+
+.password-box input{
+width:100%;
+padding-right:40px;
+}
+
+.toggle{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:18px;
 }
