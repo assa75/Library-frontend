@@ -9,10 +9,13 @@ export default function Signup({ setAuthPage }) {
     password:""
   });
 
-  const[show,setShow] = useState(false);
+  const [show,setShow] = useState(false);
 
   const handleChange = (e)=>{
-    setForm({...form,[e.target.name]:e.target.value});
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSignup = (e)=>{
@@ -42,32 +45,37 @@ export default function Signup({ setAuthPage }) {
           <input
             name="name"
             placeholder="Name"
+            value={form.name}
             onChange={handleChange}
             required
-          /><br/><br/>
+          />
 
           <input
             name="email"
+            type="email"
             placeholder="Email"
+            value={form.email}
             onChange={handleChange}
             required
-          /><br/><br/>
+          />
 
           <div className="password-box">
 
-          <input
-          type={show ? "text" : "password"}
-          placeholder="Password"
-          onChange={(e)=>setPassword(e.target.value)}
-          required
-          />
+            <input
+              name="password"
+              type={show ? "text" : "password"}
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
 
-          <span
-          className="toggle"
-          onClick={()=>setShow(!show)}
-          >
-          {show ? "👁️" : "🙈"}
-          </span>
+            <span
+              className="toggle"
+              onClick={()=>setShow(!show)}
+            >
+              {show ? "👁️" : "🙈"}
+            </span>
 
           </div>
 

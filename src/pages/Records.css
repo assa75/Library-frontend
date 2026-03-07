@@ -192,7 +192,6 @@ font-weight:600;
     max-width: 100%;
   }
 
-  /* stack fine cards */
   .fine-summary {
     flex-direction: column;
     gap: 12px;
@@ -203,7 +202,6 @@ font-weight:600;
     width: 100%;
   }
 
-  /* table responsive */
   table {
     display: block;
     overflow-x: auto;

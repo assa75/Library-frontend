@@ -84,8 +84,6 @@
   box-shadow: 0 8px 20px rgba(245, 87, 108, 0.35);
 }
 
-/* ===== MOBILE HEADER ===== */
-
 .mobile-header{
   display:none;
   align-items:center;
@@ -103,8 +101,6 @@
   cursor:pointer;
 }
 
-
-/* ===== MOBILE RESPONSIVE ===== */
 
 @media (max-width:768px){
 

@@ -9,15 +9,13 @@ export default function Sidebar({ page, setPage, open, setOpen }) {
 
   return (
     <>
-      {/* Mobile Header */}
       <div className="mobile-header">
         <button className="hamburger" onClick={() => setOpen(!open)}>
           ☰
         </button>
         {/* <h2>📚 Library</h2> */}
       </div>
-
-      {/* Sidebar */}
+      
       <div className={`sidebar ${open ? "show" : ""}`}>
         <h2 className="library-title">
           <span className="emoji">📚</span>

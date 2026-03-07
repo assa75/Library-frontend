@@ -82,8 +82,6 @@ export default function Dashboard(){
     setPage(1);
   };
 
-  /* ---------- FILTER DATA ---------- */
-
   let data = [];
 
   if(view==="BOOKS"){

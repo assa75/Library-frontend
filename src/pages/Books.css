@@ -86,7 +86,6 @@ th,td {
     width: 100%;
   }
 
-  /* search full width */
   .book-search {
     justify-content: center;
   }
@@ -95,7 +94,6 @@ th,td {
     width: 100%;
   }
 
-  /* table scroll */
   table {
     display: block;
     overflow-x: auto;

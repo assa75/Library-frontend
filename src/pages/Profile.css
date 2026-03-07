@@ -73,9 +73,6 @@
   transform:scale(1.03);
 }
 
-
-/* 📱 Mobile Responsive */
-
 @media(max-width:600px){
 
   .profile-page h2{
