@@ -48,7 +48,7 @@ export default function Signup({ setAuthPage }) {
             value={form.name}
             onChange={handleChange}
             required
-          />
+          /><br/><br/>
 
           <input
             name="email"
@@ -57,7 +57,7 @@ export default function Signup({ setAuthPage }) {
             value={form.email}
             onChange={handleChange}
             required
-          />
+          /><br/><br/>
 
           <div className="password-box">
 
