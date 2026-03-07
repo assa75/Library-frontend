@@ -49,7 +49,7 @@ export default function Login({ setIsAuth, setAuthPage }) {
             placeholder="Email"
             onChange={(e)=>setEmail(e.target.value)}
             required
-          />
+          /><br/><br/>
 
          <div className="password-box">
 

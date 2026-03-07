@@ -44,14 +44,14 @@ export default function Signup({ setAuthPage }) {
             placeholder="Name"
             onChange={handleChange}
             required
-          />
+          /><br/><br/>
 
           <input
             name="email"
             placeholder="Email"
             onChange={handleChange}
             required
-          />
+          /><br/><br/>
 
           <div className="password-box">
 
